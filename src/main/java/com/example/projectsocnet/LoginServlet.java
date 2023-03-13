@@ -17,9 +17,15 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("ragacsaxeli");
         String password = request.getParameter("paroli");
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
-        request.setAttribute("ragacasaxeli", email);
-        dispatcher.forward(request, response);
+        if (email.equals("ragacsaxeli")){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");
+            request.setAttribute("ragacasaxeli", email);
+            dispatcher.forward(request, response);
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            request.setAttribute("ragacasaxeli", email);
+            dispatcher.forward(request, response);
+        }
 
     }
 }
