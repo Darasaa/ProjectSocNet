@@ -17,7 +17,8 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("ragacsaxeli");
         String password = request.getParameter("paroli");
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("signUp.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+        request.setAttribute("ragacasaxeli", email);
         dispatcher.forward(request, response);
 
     }
