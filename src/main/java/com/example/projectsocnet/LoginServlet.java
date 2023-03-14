@@ -16,6 +16,8 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("ragacsaxeli");
         String password = request.getParameter("paroli");
+        
+
 
         if (email.equals("ragacsaxeli")){
             RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");

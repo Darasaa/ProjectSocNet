@@ -10,20 +10,20 @@ public class DatabaseManager {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String USER = "root";
     private static final String PASSWORD = "shechema";
-    private static final String TABLE_NAME = "accounts";
+    private static final String TABLE_NAME = "profiles";
 
     public void insert(User user) {
         try {
             Class.forName(DRIVER);
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            String query = "insert into " + TABLE_NAME +"(FirstName, LastName, Age) values (?, ?, ?)";
+            String query = "insert into " + TABLE_NAME +"(FirstName, LastName, userName, id) values (?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
 
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setInt(3, user.getAge());
-
+            preparedStatement.setString(3,user.getUserName());
+            preparedStatement.setInt(4, user.getId());
             preparedStatement.executeUpdate();
 
         } catch (Exception e) {
@@ -37,12 +37,13 @@ public class DatabaseManager {
             Class.forName(DRIVER);
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            String query = "select * from " + TABLE_NAME +" where FirstName = ? and LastName = ? and age = ?";
+            String query = "select * from " + TABLE_NAME +" where FirstName = ? and LastName = ? and userName = ? and id = ?";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, user.getFirstName());
             ps.setString(2, user.getLastName());
-            ps.setInt(3, user.getAge());
+            ps.setString(3, user.getUserName());
+            ps.setInt(4, user.getId());
 
             ResultSet rs = ps.executeQuery();
             boolean res = rs.next();

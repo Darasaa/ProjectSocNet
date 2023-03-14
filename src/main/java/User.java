@@ -1,7 +1,8 @@
 public class User {
     private String firstName;
-    private String lastName;
-    private int age;
+    private String surname;
+    private String userName;
+    private int id;
 
     User(){
 
@@ -13,22 +14,31 @@ public class User {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.surname = lastName;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public String getFirstName() {
         return firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return surname;
     }
 
-    public int getAge() {
-        return age;
+    public String getUserName() {
+        return userName;
+    }
+
+    public int getId() {
+        return id;
     }
 }
