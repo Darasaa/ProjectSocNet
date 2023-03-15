@@ -10,42 +10,46 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-public class RegistrationServlet {
-    @WebServlet(name = "registrationServlet", value = "/registration-Servlet")
-    public class registrationServlet extends HttpServlet {
+@WebServlet(name = "registrationServlet", value = "/registration-Servlet")
+public class RegistrationServlet extends HttpServlet {
 
         public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-            String email = request.getParameter("ragacsaxeli");
+            String email = request.getParameter("email");
             String password = request.getParameter("paroli");
-            String repeatPassword = request.getParameter("paroliMeore");
+            String repeatPassword = request.getParameter("rparoli");
             String firstName = request.getParameter("firstname");
             String surName = request.getParameter("surname");
-            String userName = request.getParameter("username");
-            String id = request.getParameter("id");
+            String profess = request.getParameter("proff");
 
             if (!password.equals(repeatPassword)) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");
                 request.setAttribute("ragacasaxeli", email);
+                dispatcher.forward(request, response);
             }
 
             User user = new User();
-            user.setFirstName("firstName");
-            user.setLastName("lastName");
-            user.setUserName("username");
-            user.setId(user.getId());
+            user.setFirstName(firstName);
+            user.setLastName(surName);
+            user.setUserName(email);
+            user.setPassW(password);
+            user.setProfes(profess);
+            DatabaseManager bazaa = new DatabaseManager();
+            bazaa.insert(user);
 
             DatabaseManager baza = new DatabaseManager();
             if(baza.contains(user)){
                 RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");
                 request.setAttribute("ragacsaxeli", email);
+                dispatcher.forward(request, response);
             } else {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
                 request.setAttribute("ragacsaxeli", email);
+                dispatcher.forward(request, response);
             }
 
         }
 
 
-    }
 }
+
+

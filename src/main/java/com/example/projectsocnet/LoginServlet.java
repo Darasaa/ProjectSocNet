@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.sql.*;
 
-
+import static com.database.DatabaseManager.DATABASE_NAME;
 
 
 @WebServlet(name = "loginServlet", value = "/login-Servlet")
@@ -19,8 +20,11 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("username");
         String password = request.getParameter("paroli");
 
+
         User user = new User(email, password);
-        
+        DatabaseManager database = new DatabaseManager();
+
+
 
 
         if (email ==null && email.isBlank()) {
@@ -39,6 +43,7 @@ public class LoginServlet extends HttpServlet {
         private String firstName;
         private String surName;
         private String userName;
+        private String passW;
         private int id;
 
         public User(String email, String password) {

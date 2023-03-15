@@ -12,18 +12,24 @@
 <h1>Register your account</h1>
 
 <form action="registration-Servlet">
-    <label for="fname">Username/Email:</label>
-    <input type="text" id="fname" name="fname" placeholder = "Enter email" required><br><br>
-    <label for="fname">Enter your name:</label>
-    <input type="text" id="name" name="fname" placeholder = "Enter your firstname"><br><br>
-    <label for="fname">Enter your surname:</label>
-    <input type="text" id="surname" name="fname" placeholder="Enter your surname"><br><br>
-    <label for="fname">Enter your profession:</label>
-    <input type="text" id="proff" name="fname" placeholder="Enter your profession"><br><br>
-    <label for="lname">Password:</label>
-    <input type="password" id="lname" name="lname" placeholder = "Enter password" required><br><br>
-    <label for="lname">Repeat Password:</label>
-    <input type="password" id="rPassword" name="rPassword" placeholder = "Repeat password" required><br><br>
+    <label for="email">Username/Email:</label>
+    <input type="text" id="email" name="email" placeholder = "Enter email" required><br><br>
+
+    <label for="firstname">Enter your name:</label>
+    <input type="text" id="firstname" name="firstname" placeholder = "Enter your firstname"><br><br>
+
+    <label for="surname">Enter your surname:</label>
+    <input type="text" id="surname" name="surname" placeholder="Enter your surname"><br><br>
+
+    <label for="proff">Enter your profession:</label>
+    <input type="text" id="proff" name="proff" placeholder="Enter your profession"><br><br>
+
+    <label for="paroli">Password:</label>
+    <input type="password" id="paroli" name="paroli" placeholder = "Enter password" required><br><br>
+
+    <label for="rparoli">Repeat Password:</label>
+    <input type="password" id="rparoli" name="rparoli" placeholder = "Repeat password" required><br><br>
+
     <input type="submit" value="Register your account">
 </form>
 <br>

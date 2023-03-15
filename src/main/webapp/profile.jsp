@@ -11,6 +11,6 @@
     <title>Welcome to your page</title>
 </head>
 <body>
-<h1>Hello <%=request.getParameter("ragacasaxeli")%> </h1>
+<h1>Hello <%=request.getAttribute("ragacsaxeli")%> </h1>
 </body>
 </html>
