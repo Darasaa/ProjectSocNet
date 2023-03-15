@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Levan_Daraselia
+  com.database.User: Levan_Daraselia
   Date: 3/13/2023
   Time: 4:12 PM
   To change this template use File | Settings | File Templates.
@@ -11,7 +11,7 @@
 
 <h1>Register your account</h1>
 
-<form action="/action_page.php">
+<form action="registration-Servlet">
     <label for="fname">Username/Email:</label>
     <input type="text" id="fname" name="fname" placeholder = "Enter email" required><br><br>
     <label for="fname">Enter your name:</label>

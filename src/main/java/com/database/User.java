@@ -1,10 +1,12 @@
+package com.database;
+
 public class User {
     private String firstName;
     private String surname;
     private String userName;
     private int id;
 
-    User(){
+    public User(){
 
 
     }

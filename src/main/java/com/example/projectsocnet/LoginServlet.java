@@ -1,5 +1,6 @@
 package com.example.projectsocnet;
 
+import com.database.DatabaseManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,16 +11,19 @@ import java.io.*;
 
 
 
+
 @WebServlet(name = "loginServlet", value = "/login-Servlet")
 public class LoginServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String email = request.getParameter("ragacsaxeli");
+        String email = request.getParameter("username");
         String password = request.getParameter("paroli");
+
+        User user = new User(email, password);
         
 
 
-        if (email.equals("ragacsaxeli")){
+        if (email ==null && email.isBlank()) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");
             request.setAttribute("ragacasaxeli", email);
             dispatcher.forward(request, response);
@@ -29,5 +33,16 @@ public class LoginServlet extends HttpServlet {
             dispatcher.forward(request, response);
         }
 
+    }
+
+    class User {
+        private String firstName;
+        private String surName;
+        private String userName;
+        private int id;
+
+        public User(String email, String password) {
+
+        }
     }
 }
