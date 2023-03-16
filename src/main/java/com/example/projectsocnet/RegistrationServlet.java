@@ -20,24 +20,14 @@ public class RegistrationServlet extends HttpServlet {
             String firstName = request.getParameter("firstname");
             String surName = request.getParameter("surname");
             String profess = request.getParameter("proff");
+            DatabaseManager baza = new DatabaseManager();
+            User user = new User();
 
-            if (!password.equals(repeatPassword)) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");
+            if(baza.contains(user)){
+                RequestDispatcher dispatcher = request.getRequestDispatcher("isThere.jsp");
                 request.setAttribute("email", email);
                 dispatcher.forward(request, response);
-            }
-
-            User user = new User();
-            user.setFirstName(firstName);
-            user.setLastName(surName);
-            user.setUserName(email);
-            user.setPassW(password);
-            user.setProfes(profess);
-            DatabaseManager bazaa = new DatabaseManager();
-            bazaa.insert(user);
-
-            DatabaseManager baza = new DatabaseManager();
-            if(baza.contains(user)){
+            } if (!password.equals(repeatPassword)) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");
                 request.setAttribute("email", email);
                 dispatcher.forward(request, response);
@@ -46,6 +36,28 @@ public class RegistrationServlet extends HttpServlet {
                 request.setAttribute("email", email);
                 dispatcher.forward(request, response);
             }
+
+
+//            User user = new User();
+            user.setFirstName(firstName);
+            user.setLastName(surName);
+            user.setUserName(email);
+            user.setPassW(password);
+            user.setProfes(profess);
+            baza.insert(user);
+//            DatabaseManager bazaa = new DatabaseManager();
+//            bazaa.insert(user);
+
+//            DatabaseManager baza = new DatabaseManager();
+//            if(baza.contains(user)){
+//                RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+//                request.setAttribute("email", email);
+//                dispatcher.forward(request, response);
+//            } else {
+//                RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+//                request.setAttribute("email", email);
+//                dispatcher.forward(request, response);
+//            }
 
         }
 

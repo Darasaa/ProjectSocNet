@@ -36,13 +36,14 @@ public class DatabaseManager {
             Class.forName(DRIVER);
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            String query = "select * from " + TABLE_NAME +" where FirstName = ? and LastName = ? and userName = ? and passW = ? ";
+            String query = "select * from " + TABLE_NAME +" where Name = ? and Surname = ? and UsernameOrEmail = ? and passW = ? and Profession = ? ";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, user.getFirstName());
             ps.setString(2, user.getLastName());
             ps.setString(3, user.getUserName());
             ps.setString(4,user.getPassW());
+            ps.setString(5,user.getProfes());
 
             ResultSet rs = ps.executeQuery();
             boolean res = rs.next();
