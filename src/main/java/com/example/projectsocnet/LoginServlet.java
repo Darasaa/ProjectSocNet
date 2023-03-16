@@ -1,6 +1,8 @@
 package com.example.projectsocnet;
 
 import com.database.DatabaseManager;
+import com.database.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,17 +21,9 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("username");
         String password = request.getParameter("paroli");
-
-
-        User user = new User(email, password);
         DatabaseManager database = new DatabaseManager();
-
-
-
-
-
-        if (email ==null && email.isBlank()) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");
+        if (!database.contains(new com.database.User()) || email.isBlank()) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("noUser.jsp");
             request.setAttribute("email", email);
             dispatcher.forward(request, response);
         } else {
