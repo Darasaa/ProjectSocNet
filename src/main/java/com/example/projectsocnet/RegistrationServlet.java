@@ -23,7 +23,7 @@ public class RegistrationServlet extends HttpServlet {
 
             if (!password.equals(repeatPassword)) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");
-                request.setAttribute("ragacasaxeli", email);
+                request.setAttribute("email", email);
                 dispatcher.forward(request, response);
             }
 
@@ -39,11 +39,11 @@ public class RegistrationServlet extends HttpServlet {
             DatabaseManager baza = new DatabaseManager();
             if(baza.contains(user)){
                 RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");
-                request.setAttribute("ragacsaxeli", email);
+                request.setAttribute("email", email);
                 dispatcher.forward(request, response);
             } else {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
-                request.setAttribute("ragacsaxeli", email);
+                request.setAttribute("email", email);
                 dispatcher.forward(request, response);
             }
 

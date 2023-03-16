@@ -15,13 +15,14 @@ public class DatabaseManager {
             Class.forName(DRIVER);
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            String query = "insert into " + TABLE_NAME +"(Name, Surname, Username, Password) values (?, ?, ?, ?)";
+            String query = "insert into " + TABLE_NAME +"(Name, Surname, UsernameOrEmail, Profession, Passw) values (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
 
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3,user.getUserName());
-            preparedStatement.setString(4,user.getPassW());
+            preparedStatement.setString(4,user.getProfes());
+            preparedStatement.setString(5,user.getPassW());
             preparedStatement.executeUpdate();
 
         } catch (Exception e) {
@@ -35,14 +36,13 @@ public class DatabaseManager {
             Class.forName(DRIVER);
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            String query = "select * from " + TABLE_NAME +" where FirstName = ? and LastName = ? and userName = ? and passW = ? and id = ?";
+            String query = "select * from " + TABLE_NAME +" where FirstName = ? and LastName = ? and userName = ? and passW = ? ";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, user.getFirstName());
             ps.setString(2, user.getLastName());
             ps.setString(3, user.getUserName());
             ps.setString(4,user.getPassW());
-            ps.setInt(5, user.getId());
 
             ResultSet rs = ps.executeQuery();
             boolean res = rs.next();

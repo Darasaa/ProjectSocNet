@@ -27,13 +27,14 @@ public class LoginServlet extends HttpServlet {
 
 
 
+
         if (email ==null && email.isBlank()) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("loginError.jsp");
-            request.setAttribute("ragacasaxeli", email);
+            request.setAttribute("email", email);
             dispatcher.forward(request, response);
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            request.setAttribute("ragacasaxeli", email);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+            request.setAttribute("email", email);
             dispatcher.forward(request, response);
         }
 
