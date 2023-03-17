@@ -22,27 +22,16 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("username");
         String password = request.getParameter("paroli");
         DatabaseManager database = new DatabaseManager();
-        if (!database.contains(new com.database.User()) || email.isBlank()) {
+        var user = new User(email,password);
+
+        if (!database.contains(user) || email.isBlank()) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("noUser.jsp");
             request.setAttribute("email", email);
             dispatcher.forward(request, response);
-        } else {
+        } else if (database.contains(user)){
             RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
             request.setAttribute("email", email);
             dispatcher.forward(request, response);
-        }
-
-    }
-
-    class User {
-        private String firstName;
-        private String surName;
-        private String userName;
-        private String passW;
-        private int id;
-
-        public User(String email, String password) {
-
         }
     }
 }
