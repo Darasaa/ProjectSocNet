@@ -78,6 +78,37 @@ public class DatabaseManager {
         }
     }
 
+    public User getUser(String email,String password){
+        try {
+            Class.forName(DRIVER);
+            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+
+            String query = "select * from " + TABLE_NAME +" where UsernameOrEmail = ? and passW = ?";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2,password);
+
+            ResultSet rs = ps.executeQuery();
+            User user = new User();
+            if (rs.next()){
+                user.setFirstName(rs.getString("name"));
+                user.setLastName(rs.getString("surname"));
+                user.setProfes(rs.getString("profession"));
+                user.setUserName(email);
+                user.setPassW(password);
+            }
+            ps.close();
+
+            return user;
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e);
+        }
+        return null;
+
+    }
+
 
 
 }
