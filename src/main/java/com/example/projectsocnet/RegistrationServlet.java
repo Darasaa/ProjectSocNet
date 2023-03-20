@@ -21,7 +21,7 @@ public class RegistrationServlet extends HttpServlet {
             String surName = request.getParameter("surname");
             String profess = request.getParameter("proff");
             DatabaseManager baza = new DatabaseManager();
-            User user = new User();
+            User user = new User(email,password);
 
             if(baza.contains(user)){
                 RequestDispatcher dispatcher = request.getRequestDispatcher("isThere.jsp");
@@ -34,30 +34,18 @@ public class RegistrationServlet extends HttpServlet {
             } else {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
                 request.setAttribute("email", email);
+                request.setAttribute("firstname", firstName);
+                request.setAttribute("surname", surName);
+                request.setAttribute("proff", profess);
                 dispatcher.forward(request, response);
             }
 
-
-//            User user = new User();
             user.setFirstName(firstName);
             user.setLastName(surName);
             user.setUserName(email);
             user.setPassW(password);
             user.setProfes(profess);
             baza.insert(user);
-//            DatabaseManager bazaa = new DatabaseManager();
-//            bazaa.insert(user);
-
-//            DatabaseManager baza = new DatabaseManager();
-//            if(baza.contains(user)){
-//                RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
-//                request.setAttribute("email", email);
-//                dispatcher.forward(request, response);
-//            } else {
-//                RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
-//                request.setAttribute("email", email);
-//                dispatcher.forward(request, response);
-//            }
 
         }
 
