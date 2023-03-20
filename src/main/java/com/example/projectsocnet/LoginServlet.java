@@ -21,6 +21,9 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("username");
         String password = request.getParameter("paroli");
+        String firstName = request.getParameter("firstname");
+        String surname = request.getParameter("surname");
+        String profess = request.getParameter("proff");
         DatabaseManager database = new DatabaseManager();
         var user = new User(email,password);
 
@@ -31,6 +34,9 @@ public class LoginServlet extends HttpServlet {
         } else if (database.contains(user)){
             RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
             request.setAttribute("email", email);
+            request.setAttribute("firstname", firstName);
+            request.setAttribute("surname", surname);
+            request.setAttribute("proff",profess);
             dispatcher.forward(request, response);
         }
     }
