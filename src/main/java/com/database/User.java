@@ -15,6 +15,11 @@ public class User {
 
     }
 
+    public User(String email, String pass){
+        userName = email;
+        passW = pass;
+    }
+
     public void setFirstName(String firstName){
         this.firstName = firstName;
     }
