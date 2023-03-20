@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("email", email);
             dispatcher.forward(request, response);
         } else if (database.contains(user)){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("fromLogin.jsp");
             request.setAttribute("email", email);
             request.setAttribute("firstname", firstName);
             request.setAttribute("surname", surname);
