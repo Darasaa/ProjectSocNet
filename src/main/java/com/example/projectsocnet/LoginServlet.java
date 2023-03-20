@@ -21,22 +21,20 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("username");
         String password = request.getParameter("paroli");
-        String firstName = request.getParameter("firstname");
-        String surname = request.getParameter("surname");
-        String profess = request.getParameter("proff");
         DatabaseManager database = new DatabaseManager();
-        var user = new User(email,password);
+//        var user = new User(email,password);
+        User user = database.getUser(email,password);
 
-        if (!database.contains(user) || email.isBlank()) {
+        if (!database.contains(user)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("noUser.jsp");
             request.setAttribute("email", email);
             dispatcher.forward(request, response);
         } else if (database.contains(user)){
             RequestDispatcher dispatcher = request.getRequestDispatcher("fromLogin.jsp");
             request.setAttribute("email", email);
-            request.setAttribute("firstname", firstName);
-            request.setAttribute("surname", surname);
-            request.setAttribute("proff",profess);
+            request.setAttribute("firstname", user.getFirstName());
+            request.setAttribute("surname", user.getLastName());
+            request.setAttribute("proff",user.getProfes());
             dispatcher.forward(request, response);
         }
     }
