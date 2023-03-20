@@ -11,6 +11,13 @@
     <title>Welcome to your page</title>
 </head>
 <body>
-<h1>Hello <%=request.getAttribute("email")%> </h1>
+<h1> Welcome <%=request.getAttribute("firstname")%> <%=request.getAttribute("surname")%></h1>
+<h3> Username: <%=request.getAttribute("email")%> </h3>
+<h3> Name: <%=request.getAttribute("firstname")%></h3>
+<h3> Surname: <%=request.getAttribute("surname")%> </h3>
+<h3> Profession: <%=request.getAttribute("proff")%> </h3>
+
+<a href="index.jsp"> Logout</a>
+
 </body>
 </html>
