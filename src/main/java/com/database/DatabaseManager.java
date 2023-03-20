@@ -36,14 +36,11 @@ public class DatabaseManager {
             Class.forName(DRIVER);
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            String query = "select * from " + TABLE_NAME +" where Name = ? and Surname = ? and UsernameOrEmail = ? and passW = ? and Profession = ? ";
+            String query = "select * from " + TABLE_NAME +" where UsernameOrEmail = ? and passW = ?";
 
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, user.getFirstName());
-            ps.setString(2, user.getLastName());
-            ps.setString(3, user.getUserName());
-            ps.setString(4,user.getPassW());
-            ps.setString(5,user.getProfes());
+            ps.setString(1, user.getUserName());
+            ps.setString(2,user.getPassW());
 
             ResultSet rs = ps.executeQuery();
             boolean res = rs.next();
@@ -56,6 +53,7 @@ public class DatabaseManager {
         }
         return false;
     }
+
 
     private static void selectExample() {
         try {
@@ -79,5 +77,7 @@ public class DatabaseManager {
             System.err.println(e);
         }
     }
+
+
 
 }
