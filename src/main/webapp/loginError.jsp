@@ -9,7 +9,7 @@
 <html>
 <body>
 
-<h1>Either your password or email was incorrect, please try again</h1>
+<h1>Either username or password was incorrect, please try again</h1>
 
 <form action="registration-Servlet">
   <label for="email">Username/Email:</label>
