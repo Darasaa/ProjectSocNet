@@ -4,11 +4,11 @@ import java.sql.*;
 
 public class DatabaseManager {
     public static final String DATABASE_NAME = "baza";
-    private static final String URL = "jdbc:mysql://localhost/" + DATABASE_NAME;
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String USER = "root";
-    private static final String PASSWORD = "shechema";
-    private static final String TABLE_NAME = "profiles";
+    public static final String URL = "jdbc:mysql://localhost/" + DATABASE_NAME;
+    public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    public static final String USER = "root";
+    public static final String PASSWORD = "shechema";
+    public static final String TABLE_NAME = "profiles";
 
     public static void insert(User user) {
         try {
@@ -55,28 +55,28 @@ public class DatabaseManager {
     }
 
 
-    private static void selectExample() {
-        try {
-            Class.forName(DRIVER);
-            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-
-            String query = "select * from " + TABLE_NAME;
-
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            while(rs.next()) {
-                String firstName = rs.getString("firstName");
-                String lastName = rs.getString("lastName");
-                String userName = rs.getString("userName");
-                String passWord = rs.getString("passW");
-            }
-            st.close();
-        } catch (Exception e) {
-            System.err.println("Got an exception! ");
-            System.err.println(e);
-        }
-    }
+//    public void selectExample() {
+//        try {
+//            Class.forName(DRIVER);
+//            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+//
+//            String query = "select * from " + TABLE_NAME;
+//
+//            Statement st = conn.createStatement();
+//            ResultSet rs = st.executeQuery(query);
+//
+//            while(rs.next()) {
+//                String firstName = rs.getString("firstName");
+//                String lastName = rs.getString("lastName");
+//                String userName = rs.getString("userName");
+//                String passWord = rs.getString("passW");
+//            }
+//            st.close();
+//        } catch (Exception e) {
+//            System.err.println("Got an exception! ");
+//            System.err.println(e);
+//        }
+//    }
 
     public User getUser(String email,String password){
         try {
@@ -107,6 +107,30 @@ public class DatabaseManager {
         }
         return null;
 
+    }
+
+    public void selectUpdate(User user) {
+        try {
+            Class.forName(DRIVER);
+            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+
+            String query = "update" + TABLE_NAME + "(Name, Surname, UsernameOrEmail, Profession, Passw) values (?, ?, ?, ?, ?)";
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next()) {
+                String firstName = rs.getString("name");
+                String lastName = rs.getString("surname");
+                String userName = rs.getString("usernameOrEmail");
+                String passWord = rs.getString("passW");
+                String profession = rs.getString("profession");
+            }
+            st.close();
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e);
+        }
     }
 
 
