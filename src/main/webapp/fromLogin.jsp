@@ -17,7 +17,7 @@
 <h3> Surname: <%=request.getAttribute("surname")%> </h3>
 <h3> Profession: <%=request.getAttribute("proff")%> </h3>
 
-<a href="index.jsp"> Logout</a>
+<a href="index.jsp"> Logout</a>     <a href="updateInfo.jsp"> Update your info</a>
 
 </body>
 </html>
